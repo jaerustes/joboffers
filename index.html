@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+</head>
+<body>
+  <h1>Ofertas de Trabajo</h1>
+  <ul id="ofertas"></ul>
+
+  <script>
+    google.script.run.withSuccessHandler(updateList).getData();
+
+    function updateList(data) {
+      var ofertas = JSON.parse(data);
+      var ul = document.getElementById('ofertas');
+      ofertas.forEach(function(oferta) {
+        var li = document.createElement('li');
+        li.textContent = oferta.join(' - ');
+        ul.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
